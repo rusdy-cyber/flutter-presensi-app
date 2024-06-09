@@ -16,6 +16,8 @@
           "run"
           "--machine"
           "-d"
+          "pub"
+          "get"
           "web-server"
           "--web-hostname"
           "0.0.0.0"
@@ -28,8 +30,6 @@
         command = [
           "flutter"
           "run"
-          # "pub"
-          # "get"
           "--machine"
           "-d"
           "android"

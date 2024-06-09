@@ -400,7 +400,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                     const SizedBox(width: 8), // Spacing between icon and text
                     Text(
-                      'Tekan untuk presensi keluar ${isMasuk?'masuk':'pulang'}',
+                      'Tekan untuk presensi ${isMasuk?'masuk':'pulang'}',
                       style: GoogleFonts.manrope(
                         fontSize: 20,
                         fontWeight: FontWeight.bold
