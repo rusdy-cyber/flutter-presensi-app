@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:presensi_app/screen/dashboard_screen.dart';
+
 import 'package:presensi_app/screen/login_screen.dart';
 
 class SplashScreen extends StatelessWidget{

@@ -646,7 +646,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
               const SizedBox(height: 16),
               ElevatedButton(
-                onPressed: onPressed: recordAttendance,
+                onPressed: recordAttendance,
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 50),
                   backgroundColor: Colors.blue,
