@@ -28,6 +28,8 @@
         command = [
           "flutter"
           "run"
+          # "pub"
+          # "get"
           "--machine"
           "-d"
           "android"
