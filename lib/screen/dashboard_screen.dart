@@ -3,11 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:presensi_app/model/presensi.dart';
 import 'package:presensi_app/screen/attandance_recap_screen.dart';
+import 'package:presensi_app/screen/log_activity_screen/logs_home_screen.dart';
 import 'package:presensi_app/utils/mix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
 
 class DashboardScreen extends StatefulWidget{
   const DashboardScreen({super.key});
@@ -71,13 +71,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool('isMasuk', isMasuk);
   }
-   // Metode untuk memuat status check-in/check-out
+
+  // Metode untuk memuat status check-in/check-out
   Future<void> loadStatusMasuk() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       isMasuk = prefs.getBool('isMasuk') ?? true;
     });
   }
+
   Future<void> recordAttendance() async {
     //tutup showbottomsheet
     Navigator.pop(context);
@@ -128,6 +130,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       );
     }
   }
+
   @override
   void initState() {
     super.initState();
@@ -301,7 +304,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       color: const Color(0xFF101317),
                                     ),),
                                   Text(
-                                    getPresenceEntryStatus(data?.jamMasuk??'-'),
+                                    getPresenceEntryStatus(data?.jamMasuk ?? '-'),
                                     style: GoogleFonts.lexend(
                                       fontSize: 16,
                                       color:const Color(0xFF101317),
@@ -410,6 +413,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
               ), 
               const SizedBox(height: 10,),
+              
               Row(
                 children: [
                   Expanded(
@@ -530,9 +534,45 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ),
                       ),
                     ),
-                  ),
+                  ),      
                 ],
               ),
+              const SizedBox(height:10,),
+              ElevatedButton(
+                    onPressed: (){
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) =>  LogsActivityScreen(nik:nik,token:token),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(double.infinity, 50), // width and height
+                      backgroundColor: const Color(0xFF12A3DA),
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      )
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min, // Use min to prevent the Row from expanding
+                      children: [
+                        const Icon(
+                          Icons.note_add_outlined, // This is the icon you want before the text
+                          color: Colors.white, // Icon color
+                          size: 24.0, // Icon size
+                        ),
+                        const SizedBox(width: 8), // Spacing between icon and text
+                        Text(
+                          'Isi Log Aktifitas',
+                          style: GoogleFonts.manrope(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      ],
+                    ),
+                  ), 
             ],
           ),
         )
@@ -601,7 +641,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Jam  ${isMasuk ? 'Masuk' : 'Pulang'}',
+                        'Jam ${isMasuk ? 'Masuk' : 'Pulang'}',
                         style: GoogleFonts.manrope(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
